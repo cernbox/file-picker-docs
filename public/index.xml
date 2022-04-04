@@ -1,0 +1,18 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CERNBox Filepicker – Docs</title>
+    <link>https://filepicker.cernbox.cern.ch/docs/</link>
+    <description>Recent content in Docs on CERNBox Filepicker</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Apr 2022 13:29:48 +0200</lastBuildDate>
+    
+	  <atom:link href="https://filepicker.cernbox.cern.ch/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+      
+    
+    
+  </channel>
+</rss>

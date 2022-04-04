@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://filepicker.cernbox.cern.ch/docs'
 languageCode = 'en-us'
 title = 'CERNBox Filepicker'
 theme = 'docsy'

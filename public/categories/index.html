@@ -1,34 +1,61 @@
-{{ $cover := and (.HasShortcode "blocks/cover") (not .Site.Params.ui.navbar_translucent_over_cover_disable) }}
-<nav class="js-navbar-scroll navbar navbar-expand navbar-dark justify-content-between {{ if $cover}} td-navbar-cover {{ end }} flex-md-row td-navbar">
-        <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
-		<span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span><span class="font-weight-bold">{{ .Site.Title }}</span>
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.96.0" />
+<link rel="alternate" type="application/rss&#43;xml" href="https://filepicker.cernbox.cern.ch/docs/categories/index.xml">
+<meta name="robots" content="index, follow">
+
+
+<link rel="shortcut icon" href="/docs/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/docs/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/docs/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/docs/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/docs/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/docs/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/docs/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/docs/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/docs/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/docs/favicons/android-192x192.png" sizes="192x192">
+
+<title>Categories | CERNBox Filepicker</title>
+<meta name="description" content="">
+<meta property="og:title" content="Categories" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://filepicker.cernbox.cern.ch/docs/categories/" />
+
+<meta itemprop="name" content="Categories">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Categories"/>
+<meta name="twitter:description" content=""/>
+
+
+
+
+<link rel="preload" href="/docs/scss/main.min.7765509225c45f6a62e65ed070ed8900e3fe4cb2e1c2d12c8a91ca63f01f4a3e.css" as="style">
+<link href="/docs/scss/main.min.7765509225c45f6a62e65ed070ed8900e3fe4cb2e1c2d12c8a91ca63f01f4a3e.css" rel="stylesheet" integrity="">
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
+  crossorigin="anonymous"></script>
+
+  </head>
+  <body class="td-taxonomy">
+    <header>
+      
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark justify-content-between  flex-md-row td-navbar">
+        <a class="navbar-brand" href="/docs/">
+		<span class="navbar-logo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" width="148" height="163" viewBox="-9.188 -10.103 148 163" overflow="visible" enable-background="new -9.188 -10.103 148 163"><defs/><polygon fill="#78b6e4" points="62.74,70.638 62.74,103.435 91.417,90.655 91.417,55.261 62.526,68.929"/><path fill="#4267b1" d="M63.738 142.564c-17.179.0-30.642-31.312-30.642-71.282C33.097 31.312 46.56.0 63.738.0s30.643 31.312 30.643 71.282-13.464 71.282-30.643 71.282zm0-138.91c-14.624.0-26.979 30.968-26.979 67.628s12.355 67.626 26.979 67.626c14.626.0 26.985-30.966 26.985-67.626S78.364 3.654 63.738 3.654z"/><path fill="#4267b1" d="M23.265 115.81c-10.562.0-17.934-3.106-21.314-8.987-8.564-14.897 11.865-42.175 46.518-62.102 19.56-11.251 40.398-17.97 55.746-17.97 10.561.0 17.936 3.106 21.317 8.989 4.227 7.354 1.524 17.944-7.616 29.823C109.113 77.013 95.3 88.475 79.016 97.836c-19.565 11.255-40.4 17.974-55.751 17.974zm80.949-85.405c-14.734.0-34.893 6.536-53.931 17.484C18.511 66.164-2.17 92.316 5.117 105.005c3.405 5.909 11.746 7.15 18.147 7.15 14.733.0 34.897-6.538 53.932-17.49 15.875-9.128 29.309-20.258 37.82-31.32 8.064-10.484 10.735-19.881 7.344-25.787C118.959 31.648 110.611 30.405 104.214 30.405z"/><path fill="#4267b1" d="M104.216 115.81h-.002c-15.348.0-36.19-6.719-55.746-17.974C32.179 88.475 18.363 77.013 9.562 65.563.426 53.685-2.28 43.094 1.95 35.74c3.381-5.883 10.753-8.989 21.314-8.989 15.352.0 36.187 6.719 55.751 17.97 34.647 19.927 55.079 47.204 46.516 62.102C122.149 112.703 114.774 115.81 104.216 115.81zM23.265 30.405c-6.401.0-14.742 1.243-18.147 7.152-3.39 5.906-.716 15.303 7.343 25.787 8.518 11.062 21.945 22.192 37.823 31.32 19.032 10.952 39.192 17.49 53.931 17.49h.002c6.403.0 14.743-1.241 18.145-7.15 7.295-12.688-13.39-38.841-45.164-57.115-19.036-10.948-39.2-17.484-53.933-17.484z"/><polygon fill="#27aae1" points="64.634,38.817 35.683,54.381 62.361,69.858 90.491,54.333"/><path fill="#4267b1" d="M62.361 71.66c-.313.0-.621-.081-.905-.241L34.773 55.947c-.562-.329-.906-.938-.897-1.589.012-.658.377-1.253.953-1.564l28.949-15.565c.553-.302 1.237-.289 1.779.048l25.859 15.512c.55.334.89.932.877 1.579-.012.645-.363 1.24-.938 1.544l-28.12 15.527C62.962 71.585 62.664 71.66 62.361 71.66zM39.38 54.441l23.004 13.347 24.493-13.521L64.58 40.896 39.38 54.441z"/><rect x="60.875" y="69.833" fill="#4267b1" width="3.65" height="32.216"/></svg></span><span class="font-weight-bold">CERNBox Filepicker</span>
 	</a>
 	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
 		<ul class="navbar-nav mt-2 mt-lg-0">
-			{{ $p := . }}
-			{{ range .Site.Menus.main }}
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				{{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
-				{{ with .Page }}
-				{{ $active = or $active ( $.IsDescendant .)  }}
-				{{ end }}
-				{{ $pre := .Pre }}
-				{{ $post := .Post }}
-				{{ $url := urls.Parse .URL }}
-				{{ $baseurl := urls.Parse $.Site.Params.Baseurl }}
-				<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}>{{ with .Pre}}{{ $pre }}{{ end }}<span{{if $active }} class="active"{{end}}>{{ .Name }}</span>{{ with .Post}}{{ $post }}{{ end }}</a>
-			</li>
-			{{ end }}
-			{{ if  .Site.Params.versions }}
-			<li class="nav-item dropdown mr-4 d-none d-lg-block">
-				{{ partial "navbar-version-selector.html" . }}
-			</li>
-			{{ end }}
-			{{ if  (gt (len .Site.Home.Translations) 0) }}
-			<li class="nav-item dropdown mr-4 d-none d-lg-block">
-				{{ partial "navbar-lang-selector.html" . }}
-			</li>
-			{{ end }}
+			
+			
+			
+			
 			<div class="js-toggle-wrapper mr-2">
 				<div class="js-toggle">
 					<div class="js-toggle-track">
@@ -45,17 +72,11 @@
 			</div>
 		</ul>
 	</div>
-	<div class="navbar-nav d-none d-lg-block">{{ partial "search-input.html" . }}</div>
+	<div class="navbar-nav d-none d-lg-block"></div>
 </nav>
 <style>
 
-	/*
-	 * Dark Mode Toggle
-	 * Copyright (c) 2015 instructure-react
-	 * Forked from Dan Abramov's personal blog
-	 * https://github.com/gaearon/overreacted.io/blob/master/src/components/Toggle.css
-	 * MIT License
-	**/
+	 
 
 	.js-toggle-wrapper {
 		display: table;
@@ -163,14 +184,14 @@
 		var body = document.body;
 		var switcher = document.getElementsByClassName('js-toggle')[0];
 
-		//Click on dark mode icon. Add dark mode classes and wrappers. Store user preference through sessions
+		
 		switcher.addEventListener("click", function() {
 			this.classList.toggle('js-toggle--checked');
 			this.classList.add('js-toggle--focus');
-			//If dark mode is selected
+			
 			if (this.classList.contains('js-toggle--checked')) {
 				body.classList.add('dark-mode');
-				//Save user preference in storage
+				
 				localStorage.setItem('darkMode', 'true');
 			} else {
 				body.classList.remove('dark-mode');
@@ -180,11 +201,102 @@
 			}
 		})
 
-		//Check Storage. Keep user preference on page reload
+		
 		if (localStorage.getItem('darkMode')) {
-			//body.classList.add('dark-mode');
+			
 			switcher.classList.add('js-toggle--checked');
 			body.classList.add('dark-mode');
 		}
 
 	</script>
+
+    </header>
+    <div class="container-fluid td-default td-outer">
+      <main role="main" class="td-main">
+        
+<div class="td-content">
+  <main class="taxonomy-terms-page">
+    <h1>Categories</h1>
+    
+
+
+
+  
+  
+
+  </main>
+</div>
+
+      </main>
+      
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
+    <div class="row">
+      <div class="col-6 text-center py-2">
+        
+        <small class="text-white">Made with <a class="text-warning" href="https://gohugo.io/">Hugo</a> and <a class="text-warning" href="https://www.docsy.dev/">Docsy</a>.</small>
+        
+        
+        
+        
+      </div>
+      <div class="col-6 text-right text-xs-center">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3 my-2" data-toggle="tooltip" data-placement="top" title="GitHub" aria-label="GitHub">
+    <a class="text-white" target="_blank" rel="noopener" href="https://github.com/cernbox/file-picker-wrapper" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+    integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="
+    crossorigin="anonymous"></script>
+
+
+
+
+
+<script src='/docs/js/tabpane-persist.js'></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/docs/js/main.min.46a6449bac38e952cbd8ee5ccda4b6a0bee59b77df435b4c841c446124a3b680.js" integrity="sha256-RqZEm6w46VLL2O5czaS2oL7lm3ffQ1tMhBxEYSSjtoA=" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+</html>

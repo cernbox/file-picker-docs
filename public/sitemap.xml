@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://filepicker.cernbox.cern.ch/docs/</loc>
+    <lastmod>2022-04-01T13:29:48+02:00</lastmod>
+  </url><url>
+    <loc>https://filepicker.cernbox.cern.ch/docs/embedding/</loc>
+    <lastmod>2022-04-01T13:29:48+02:00</lastmod>
+  </url><url>
+    <loc>https://filepicker.cernbox.cern.ch/docs/data/</loc>
+    <lastmod>2022-04-01T13:29:48+02:00</lastmod>
+  </url><url>
+    <loc>https://filepicker.cernbox.cern.ch/docs/style/</loc>
+    <lastmod>2022-04-01T13:29:48+02:00</lastmod>
+  </url><url>
+    <loc>https://filepicker.cernbox.cern.ch/docs/categories/</loc>
+  </url><url>
+    <loc>https://filepicker.cernbox.cern.ch/docs/tags/</loc>
+  </url>
+</urlset>
