@@ -14,12 +14,25 @@ To embed the File-picker, you have to use an `<iframe>` tag:
 ></iframe>
 ```
 
-The source URL is https://filepicker.cernbox.cern.ch, and it must be passed an `origin` query parameter containing the
-URL of the iframe parent.
+The source URL is https://filepicker.cernbox.cern.ch, and it must be passed an
+`origin` query parameter containing the URL of the iframe parent.
 
-This enables the iframe to check it against a list of approved sites before setting it as
-`targetOrigin` argument of the `postMessage` the File-picker does.
-Otherwise if the parent is vulnerable the iframe can be hijacked and the message captured including the user token.
+This enables the iframe to check it against a list of approved sites before
+setting it as `targetOrigin` argument of the `postMessage` the File-picker does.
+Otherwise if the parent is vulnerable the iframe can be hijacked and the message
+captured including the user token.
 
-By default anything under `cern.ch` is allowed. Outside sources can [open an issue](https://github.com/cernbox/file-picker-wrapper/issues/new)
+By default anything under `cern.ch` is allowed. Outside sources can
+[open an issue](https://github.com/cernbox/file-picker-wrapper/issues/new)
 requesting addition to the whitelist.
+
+## Search params
+
+The File-picker accepts the following search params:
+
+
+| Name       | Description                                                                                              | Values                     | Default | Required | Example                  |
+|------------|----------------------------------------------------------------------------------------------------------|----------------------------|---------|----------|--------------------------|
+| origin     | URL of the iframe parent                                                                                 | `string`                   |         | Yes      | `https://indico.cern.ch` |
+| userHome   | Whether the File-picker should start the browser in the user home folder instead of the root of CERNBox. | `bool`                     | `true`  | No       | `0`                      |
+| style      | Style to apply to the File-picker. `light`/`dark`                                                        | `light \| dark \| indico`  | `light` | No       | `light`                  |

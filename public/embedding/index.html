@@ -277,13 +277,55 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">iframe</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://filepicker.cernbox.cern.ch/?origin=https://mysite.cern.ch&#34;</span>
 </span></span><span style="display:flex;"><span>&gt;&lt;/<span style="color:#f92672">iframe</span>&gt;
-</span></span></code></pre></div><p>The source URL is <a href="https://filepicker.cernbox.cern.ch">https://filepicker.cernbox.cern.ch</a>, and it must be passed an <code>origin</code> query parameter containing the
-URL of the iframe parent.</p>
-<p>This enables the iframe to check it against a list of approved sites before setting it as
-<code>targetOrigin</code> argument of the <code>postMessage</code> the File-picker does.
-Otherwise if the parent is vulnerable the iframe can be hijacked and the message captured including the user token.</p>
-<p>By default anything under <code>cern.ch</code> is allowed. Outside sources can <a href="https://github.com/cernbox/file-picker-wrapper/issues/new">open an issue</a>
+</span></span></code></pre></div><p>The source URL is <a href="https://filepicker.cernbox.cern.ch">https://filepicker.cernbox.cern.ch</a>, and it must be passed an
+<code>origin</code> query parameter containing the URL of the iframe parent.</p>
+<p>This enables the iframe to check it against a list of approved sites before
+setting it as <code>targetOrigin</code> argument of the <code>postMessage</code> the File-picker does.
+Otherwise if the parent is vulnerable the iframe can be hijacked and the message
+captured including the user token.</p>
+<p>By default anything under <code>cern.ch</code> is allowed. Outside sources can
+<a href="https://github.com/cernbox/file-picker-wrapper/issues/new">open an issue</a>
 requesting addition to the whitelist.</p>
+<h2 id="search-params">Search params</h2>
+<p>The File-picker accepts the following search params:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Values</th>
+<th>Default</th>
+<th>Required</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>origin</td>
+<td>URL of the iframe parent</td>
+<td><code>string</code></td>
+<td></td>
+<td>Yes</td>
+<td><code>https://indico.cern.ch</code></td>
+</tr>
+<tr>
+<td>userHome</td>
+<td>Whether the File-picker should start the browser in the user home folder instead of the root of CERNBox.</td>
+<td><code>bool</code></td>
+<td><code>true</code></td>
+<td>No</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>style</td>
+<td>Style to apply to the File-picker. <code>light</code>/<code>dark</code></td>
+<td><code>light | dark | indico</code></td>
+<td><code>light</code></td>
+<td>No</td>
+<td><code>light</code></td>
+</tr>
+</tbody>
+</table>
 
         <div class="section-index">
     

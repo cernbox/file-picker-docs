@@ -20,10 +20,10 @@
 <link rel="icon" type="image/png" href="/docs/favicons/android-192x192.png" sizes="192x192">
 
 <title>Data | CERNBox Filepicker</title>
-<meta name="description" content="Whenever the user makes a selection on the File-picker, the iframe will post a message to the parent with the following
-shape:
-{
-    &#34;data&#34;: { …">
+<meta name="description" content="Message form
+Whenever the user makes a selection on the File-picker, the iframe will post a
+message to the parent with the following shape:
+{ …">
 <meta property="og:title" content="Data" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
@@ -274,8 +274,9 @@ shape:
 
 		
 	</header>
-	<p>Whenever the user makes a selection on the File-picker, the iframe will post a message to the parent with the following
-shape:</p>
+	<h2 id="message-form">Message form</h2>
+<p>Whenever the user makes a selection on the File-picker, the iframe will post a
+message to the parent with the following shape:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;data&#34;</span>: {
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;files&#34;</span>: [
@@ -287,11 +288,13 @@ shape:</p>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
-<p><strong>Notice:</strong> any click in a file checkbox (select or deselect a file) will trigger a new message with the updated list
-of files. This is to so the users do not have to confirm their selection inside the File-picker.</p>
+<p><strong>Notice:</strong> any click in a file checkbox (select or deselect a file) will
+trigger a new message with the updated list of files. This is to so the users
+do not have to confirm their selection inside the File-picker.</p>
 </blockquote>
-<p>This list of links can then be handled by the backend of the application using the File-picker. They can be downloaded
-straight away and the token included as parameter will be enough to authenticate the user.</p>
+<p>This list of links can then be handled by the backend of the application using
+the File-picker. They can be downloaded straight away and the token included as
+parameter will be enough to authenticate the user.</p>
 
         <div class="section-index">
     
