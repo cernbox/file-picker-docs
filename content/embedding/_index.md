@@ -35,4 +35,4 @@ The File-picker accepts the following search params:
 |------------|----------------------------------------------------------------------------------------------------------|----------------------------|---------|----------|--------------------------|
 | origin     | URL of the iframe parent                                                                                 | `string`                   |         | Yes      | `https://indico.cern.ch` |
 | userHome   | Whether the File-picker should start the browser in the user home folder instead of the root of CERNBox. | `bool`                     | `true`  | No       | `0`                      |
-| style      | Style to apply to the File-picker. `light`/`dark`                                                        | `light \| dark \| indico`  | `light` | No       | `light`                  |
+| style      | Style to apply to the File-picker.                                                                       | `light \| dark \| indico`  | `light` | No       | `light`                  |
