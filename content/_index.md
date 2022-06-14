@@ -10,9 +10,9 @@ description: >
 
 Welcome to the File-picker docs.
 
-## What does the File-picker does?
+## What does the File-picker do?
 
-The CERNBox File-picker provides a way to integrate the cloud storage into other
+The CERNBox File-picker provides a way to integrate a cloud storage into other
 applications.
 
 It can be embedded in a web, and will show a file browser which allows the users
@@ -32,4 +32,6 @@ Here is a small guide to integrate CERNBox in a site using the File-picker.
   operation and configuration parameters.
 - How to [get files from CERNBox](data) once the user has selected some.
 - How to [style the file-picker](style).
-- How to [set up](setup) a File-picker for your ownCloud instance.
+
+## How to set up your own
+- [Setting up](setup) a File-picker for your ownCloud instance.
