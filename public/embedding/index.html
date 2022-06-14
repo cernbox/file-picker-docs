@@ -235,6 +235,8 @@
   <a href="/docs/data/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsdata"><span class="">Data</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsstyle-li">
   <a href="/docs/style/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsstyle"><span class="">Styling</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docssetup-li">
+  <a href="/docs/setup/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docssetup"><span class="">Setup</span></a>
 </li>
   </ul>
 </li>
@@ -279,6 +281,9 @@
 </span></span><span style="display:flex;"><span>&gt;&lt;/<span style="color:#f92672">iframe</span>&gt;
 </span></span></code></pre></div><p>The source URL is <a href="https://filepicker.cernbox.cern.ch">https://filepicker.cernbox.cern.ch</a>, and it must be passed an
 <code>origin</code> query parameter containing the URL of the iframe parent.</p>
+<blockquote>
+<p>⚠️ Remember, you have to specify the protocol (usually <code>https://</code>) in the origin.</p>
+</blockquote>
 <p>This enables the iframe to check it against a list of approved sites before
 setting it as <code>targetOrigin</code> argument of the <code>postMessage</code> the File-picker does.
 Otherwise if the parent is vulnerable the iframe could be hijacked and the
@@ -300,6 +305,11 @@ will generate public links for the selected files. These will be valid in the
 longer term, and so they can be used to link files somewhere without copying
 them. The duration of the links can be adjusted with the <code>publicLinkDuration</code>,
 in days.</p>
+<blockquote>
+<p>ℹ️ Keep in mind, if the owner of the file deletes or moves it, the public link
+will stop being valid. This is especially important if you plan to have
+long-term access to the files.</p>
+</blockquote>
 <h2 id="query-parameters">Query parameters</h2>
 <p>The File-picker accepts the following parameters through the query string:</p>
 <table>

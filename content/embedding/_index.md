@@ -17,6 +17,8 @@ To embed the File-picker, you have to use an `<iframe>` tag:
 The source URL is https://filepicker.cernbox.cern.ch, and it must be passed an
 `origin` query parameter containing the URL of the iframe parent.
 
+> ⚠️ Remember, you have to specify the protocol (usually `https://`) in the origin.
+
 This enables the iframe to check it against a list of approved sites before
 setting it as `targetOrigin` argument of the `postMessage` the File-picker does.
 Otherwise if the parent is vulnerable the iframe could be hijacked and the
@@ -46,6 +48,10 @@ will generate public links for the selected files. These will be valid in the
 longer term, and so they can be used to link files somewhere without copying
 them. The duration of the links can be adjusted with the `publicLinkDuration`,
 in days.
+
+> ℹ️ Keep in mind, if the owner of the file deletes or moves it, the public link
+> will stop being valid. This is especially important if you plan to have
+> long-term access to the files.
 
 ## Query parameters
 
