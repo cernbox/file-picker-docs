@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.100.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <link rel="alternate" type="application/rss&#43;xml" href="https://filepicker.cernbox.cern.ch/docs/setup/index.xml">
 <meta name="robots" content="index, follow">
 
@@ -20,8 +20,13 @@
 <link rel="icon" type="image/png" href="/docs/favicons/android-192x192.png" sizes="192x192">
 
 <title>Setup | CERNBox Filepicker</title>
-<meta name="description" content="TBA
-">
+<meta name="description" content="To set up your own File-picker instance, you need to do the following:
+
+Install the File-picker
+Edit the configuration files
+Set up a web server
+
+This …">
 <meta property="og:title" content="Setup" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
@@ -234,7 +239,7 @@
   <a href="/docs/data/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsdata"><span class="">Data</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsstyle-li">
   <a href="/docs/style/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsstyle"><span class="">Styling</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docssetup-li">
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-docssetup-li">
   <a href="/docs/setup/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id="m-docssetup"><span class="td-sidebar-nav-active-item">Setup</span></a>
 </li>
   </ul>
@@ -274,7 +279,131 @@
 
 		
 	</header>
-	<p>TBA</p>
+	<p>To set up your own File-picker instance, you need to do the following:</p>
+<ul>
+<li>Install the File-picker</li>
+<li>Edit the configuration files</li>
+<li>Set up a web server</li>
+</ul>
+<p>This guide has been tested in CentOS 7 and Ubuntu 22.04, but it should work in
+most distros, as it is a basic procedure.</p>
+<blockquote>
+<p>ℹ️ Note: The <code>rsync</code> package should be installed in the system.</p>
+</blockquote>
+<h1 id="install-the-file-picker">Install the File-picker</h1>
+<ol>
+<li>Clone the File-picker repo</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p /var/www/fp
+</span></span><span style="display:flex;"><span>cd /var/www/fp
+</span></span><span style="display:flex;"><span>git clone https://github.com/cernbox/file-picker-wrapper.git .
+</span></span></code></pre></div><ol start="2">
+<li>Run <code>make</code> to create the directory and files which will be served.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make dist
+</span></span></code></pre></div><h1 id="edit-the-configuration-files">Edit the configuration files</h1>
+<p>You can find templates of the configuration files in the repo.</p>
+<ul>
+<li><a href="https://github.com/cernbox/file-picker-wrapper/blob/master/file-picker-config.json.template"><code>file-picker-config.json</code></a></li>
+<li><a href="https://github.com/cernbox/file-picker-wrapper/blob/master/allowed-origins.json.template"><code>allowed-origins.json</code></a></li>
+</ul>
+<p>The files should be placed in the <code>/dist</code> subdirectory created by <code>make</code> in the
+previous step.</p>
+<h2 id="filepicker-configjson">filepicker-config.json</h2>
+<p>This file contains the server and authentication details:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;server&#34;</span>: <span style="color:#e6db74">&#34;https://example.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;openIdConnect&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;metadata_url&#34;</span>: <span style="color:#e6db74">&#34;https://example.com/.well-known/openid-configuration&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;authority&#34;</span>: <span style="color:#e6db74">&#34;https://example.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;client_id&#34;</span>: <span style="color:#e6db74">&#34;example-client-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;response_type&#34;</span>: <span style="color:#e6db74">&#34;code&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;openid profile email&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;redirect_uri&#34;</span>: <span style="color:#e6db74">&#34;https://example.com/oidc-callback.html&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;silent_redirect_uri&#34;</span>: <span style="color:#e6db74">&#34;https://example.com/oidc-silent-callback.html&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;logLevel&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;popupWindowFeatures&#34;</span>: <span style="color:#e6db74">&#34;location=no,toolbar=no,width=895,height=990,left=100,top=100&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>First, replace the hostname in <code>server</code>, <code>redirect_uri</code> and <code>silent_redirect_uri</code>
+to the hostname of the machine where the File-picker will be available. So, if
+the name is <code>mycloud.net</code>, the fields should be:</p>
+<pre tabindex="0"><code>&#34;server&#34;: &#34;https://mycloud.net&#34;
+&#34;redirect_uri&#34;: &#34;https://mycloud.net/oidc-callback.html&#34;
+&#34;silent_redirect_uri&#34;: &#34;https://mycloud.net/oidc-silent-callback.html&#34;
+</code></pre><p>Then, fill in the details for your OIDC provider in the <code>metadata_url</code>,
+<code>authority</code> and <code>client_id</code> fields. These should point to the OCIS IDP or your
+institution&rsquo;s SSO. You will have to register a <code>client_id</code> for the File-picker
+in there. You can find more info in <a href="https://doc.owncloud.com/ocis/next/deployment/services/idp.htm">OCIS documentation</a>
+or your institution&rsquo;s docs.</p>
+<p>You can later adjust the <code>height</code> and <code>width</code> in <code>popupWindowFeatures</code> to
+fine-tune the size of the login web dimensions.</p>
+<h2 id="allowed-originsjson">allowed-origins.json</h2>
+<p>This file contains a list of the origins that the file-picker will accept in the
+<a href="http://localhost:1313/docs/embedding/#query-parameters"><code>origin</code> query parameter</a>.
+You can use the <code>*</code> wildcard to whitelist entire domains. Imagine you host two
+applications in the <code>mycloud.net</code> domain which you want to allow use of the
+File-picker:</p>
+<ul>
+<li>app1.mycloud.net</li>
+<li>app2.mycloud.net</li>
+</ul>
+<p>To do so, you can set the contents of <code>allowed-origins.json</code> to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[<span style="color:#e6db74">&#34;*.mycloud.net&#34;</span>]
+</span></span></code></pre></div><h1 id="set-up-a-web-server">Set up a web server</h1>
+<p>The File-picker requires a simple web server for the html and js bundle. This
+example uses <a href="https://www.nginx.com/">nginx</a>. You will also need a proper SSL
+certificate and key. Once you have those, first you enable access to the files
+you created accessible for the <code>nginx</code> user:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /var/www/
+</span></span><span style="display:flex;"><span>chown -R nginx:nginx fp
+</span></span></code></pre></div><p>Then, add the following to the <code>http</code> section of the <code>/etc/nginx/nginx.conf</code>.</p>
+<blockquote>
+<p>ℹ️ Note: Replace <code>YOURHOSTNAME</code> with the the hostname on which the File-picker
+will be available; and <code>YOURSSLCERTFILE</code> and <code>YOURSSLKEYFILE</code> with the path
+to the SSL certificate and key files.</p>
+</blockquote>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name YOURHOSTNAME;
+  return 301 https://$server_name$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  server_name YOURHOSTNAME;
+
+  ssl_certificate YOURSSLCERTFILE;
+  ssl_certificate_key YOURSSLKEYFILE;
+  ssl_session_timeout 1d;
+  ssl_session_cache shared:SSL:10m;
+
+  ssl_protocols TLSv1.2;
+  ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+  ssl_prefer_server_ciphers off;
+  add_header Strict-Transport-Security &#34;max-age=63072000&#34; always;
+  ssl_stapling on;
+  ssl_stapling_verify on;
+
+  root   /var/www/fp/dist;
+  index  index.html;
+
+  location / {
+    try_files   $uri $uri/ =404;
+    access_log  /var/log/nginx/fp.access.log;
+    error_log   /var/log/nginx/fp.error.log;
+  }
+}
+</code></pre><p>You can test the configuration with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nginx -t
+</span></span></code></pre></div><p>If the configuration is correct, restart nginx for the changes to take effect:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl restart nginx
+</span></span></code></pre></div><p>And that&rsquo;s all! You should be able to access the File-picker by navigating your
+browser to the address you configured in nginx. Once you confirm it works, you
+can embed it into an application by following the rest of these docs.</p>
+<p><strong>Good luck! 🎉</strong></p>
 
         <div class="section-index">
     
@@ -361,7 +490,7 @@
 
 
 
-<script src="/docs/js/main.min.109b352a26f0e071dab6e93dc3f1446cb40078a1c8cbf35282e80ae2014b89e4.js" integrity="sha256-EJs1Kibw4HHatuk9w/FEbLQAeKHIy/NSgugK4gFLieQ=" crossorigin="anonymous"></script>
+<script src="/docs/js/main.min.e6df29ba424bb6736b84d1707883f2fbf4da3d573a158dd02ddc55918e153679.js" integrity="sha256-5t8pukJLtnNrhNFweIPy&#43;/TaPVc6FY3QLdxVkY4VNnk=" crossorigin="anonymous"></script>
 
 
 

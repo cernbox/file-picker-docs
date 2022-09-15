@@ -34,4 +34,5 @@ Here is a small guide to integrate CERNBox in a site using the File-picker.
 - How to [style the file-picker](style).
 
 ## How to set up your own
+
 - [Setting up](setup) a File-picker for your ownCloud instance.

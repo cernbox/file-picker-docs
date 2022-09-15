@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.100.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <link rel="alternate" type="application/rss&#43;xml" href="https://filepicker.cernbox.cern.ch/docs/data/index.xml">
 <meta name="robots" content="index, follow">
 
@@ -20,10 +20,10 @@
 <link rel="icon" type="image/png" href="/docs/favicons/android-192x192.png" sizes="192x192">
 
 <title>Data | CERNBox Filepicker</title>
-<meta name="description" content="Message form
-Whenever the user makes a selection on the File-picker, the iframe will post a
-message to the parent with the following shape:
-When using …">
+<meta name="description" content="Message to parent
+The message posted to the parent will always include two fields: a ready
+boolean and a files array of strings.
+The File-picker works …">
 <meta property="og:title" content="Data" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
@@ -232,7 +232,7 @@ When using …">
   <ul class="ul-1">
     <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsembedding-li">
   <a href="/docs/embedding/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsembedding"><span class="">Embedding</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsdata-li">
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-docsdata-li">
   <a href="/docs/data/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id="m-docsdata"><span class="td-sidebar-nav-active-item">Data</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsstyle-li">
   <a href="/docs/style/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsstyle"><span class="">Styling</span></a>
@@ -276,14 +276,24 @@ When using …">
 
 		
 	</header>
-	<h2 id="message-form">Message form</h2>
-<p>Whenever the user makes a selection on the File-picker, the iframe will post a
-message to the parent with the following shape:</p>
+	<h2 id="message-to-parent">Message to parent</h2>
+<p>The message posted to the parent will always include two fields: a <code>ready</code>
+boolean and a <code>files</code> array of strings.</p>
+<p>The File-picker works asynchronously. It has to make some requests to validate
+the token used to access the ownCloud instance and, in public link sharing mode,
+it also has to wait for the link generation.</p>
+<p>Whenever the user makes a selection on the File-picker, the iframe will post an
+instant message to the parent with the <code>ready</code> boolean set to <code>false</code> and an
+empty <code>files</code> array. This can be used by the application to disable the
+confirmation button or show a loading spinner. Once the work is done, another
+message will be posted, with <code>ready</code> set to <code>true</code> and the list of URLs for
+selected files.</p>
 <h3 id="when-using-basic-sharing">When using basic sharing</h3>
 <p>Please refer to the <a href="../embedding#basic-sharing">basic sharing</a> section for more
 information.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">true</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;files&#34;</span>: [
 </span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;https://new.cernbox.cern.ch/remote.php/webdav/eos/user/j/johndoe/document_1.docx?access_token=123456789xyz&#34;</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;https://new.cernbox.cern.ch/remote.php/webdav/eos/user/j/johndoe/document_2.docx?access_token=123456789xyz&#34;</span>,
@@ -297,6 +307,7 @@ information.</p>
 section for more information.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">true</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;files&#34;</span>: [
 </span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;https://newqa.cernbox.cern.ch/remote.php/dav/public-files/WLyTQEmXHJVlQdO/document_1.docx&#34;</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;https://newqa.cernbox.cern.ch/remote.php/dav/public-files/JgheoMVYenmfLGq/document_2.docx&#34;</span>,
@@ -399,7 +410,7 @@ parameter will be enough to authenticate the user.</p>
 
 
 
-<script src="/docs/js/main.min.109b352a26f0e071dab6e93dc3f1446cb40078a1c8cbf35282e80ae2014b89e4.js" integrity="sha256-EJs1Kibw4HHatuk9w/FEbLQAeKHIy/NSgugK4gFLieQ=" crossorigin="anonymous"></script>
+<script src="/docs/js/main.min.e6df29ba424bb6736b84d1707883f2fbf4da3d573a158dd02ddc55918e153679.js" integrity="sha256-5t8pukJLtnNrhNFweIPy&#43;/TaPVc6FY3QLdxVkY4VNnk=" crossorigin="anonymous"></script>
 
 
 
