@@ -293,23 +293,37 @@ message captured, including the user token.</p>
 requesting addition to the whitelist.</p>
 <h2 id="operation-modes">Operation modes</h2>
 <p>There are two ways to use the File-picker, depending on the value of the
-<code>publicLink</code> search parameter.</p>
-<h3 id="basic-sharing">Basic sharing</h3>
-<p>This mode which will add the user&rsquo;s authentication token to the files URLs. This
-token is usually short lived, therefore this mode is more suited for downloading
-the selected files straight away after the user has made the selection.</p>
-<p>Basic sharing is the default and no configuration has to be set for it.</p>
-<h3 id="public-link-sharing">Public link sharing</h3>
-<p>The second mode, which can be enabled by passing the <code>publicLink=1</code> parameter,
-will generate public links for the selected files. These will be valid in the
-longer term, and so they can be used to link files somewhere without copying
-them. The duration of the links can be adjusted with the <code>publicLinkDuration</code>,
-in days.</p>
+<code>locationPicker</code> search parameter.</p>
+<h3 id="file-selector">File selector</h3>
+<p>This mode allows users to select files from their storage and then sends the
+selection to the parent application. This selection can be sent as a URL or a
+public link.</p>
+<p>This is the default mode and there is no configuration setting for it.</p>
+<h4 id="url-sharing">URL sharing</h4>
+<p>By default, the File-picker will send the files&rsquo; URL to the parent application,
+along with an authentication token to enable the download. This token is usually
+short lived, therefore this mode is more suited for downloading the selected
+files straight away after the user has made the selection (for example to copy
+them to the parent application&rsquo;s backend).</p>
+<h4 id="public-link-sharing">Public link sharing</h4>
+<p>Alternatively, the File-picker can generate public links for the selected files
+and send them to the parent application. This can be enabled by passing the
+<code>publicLink=1</code> parameter. These links will be valid in the longer term, and so
+they can be used to link files somewhere without copying them. The duration of
+the links can be adjusted with the <code>publicLinkDuration</code>, in days. These public
+links will have the <a href="https://cs3org.github.io/cs3apis/#cs3.sharing.link.v1beta1.CreatePublicShareRequest"><code>internal</code></a>
+flag set (so they are not visible in ownCloud web), and can be given a
+description via the <code>description</code> parameter.</p>
 <blockquote>
 <p>ℹ️ Keep in mind, if the owner of the file deletes or moves it, the public link
 will stop being valid. This is especially important if you plan to have
 long-term access to the files.</p>
 </blockquote>
+<h3 id="location-selector">Location selector</h3>
+<p>This mode allows users to select a path inside their storage for the parent
+application to upload files into it.</p>
+<p>The File-picker will provide the parent application with authentication details
+along with the selected path.</p>
 <h2 id="query-parameters">Query parameters</h2>
 <p>The File-picker accepts the following parameters through the query string:</p>
 <table>
@@ -333,20 +347,12 @@ long-term access to the files.</p>
 <td><code>https://indico.cern.ch</code></td>
 </tr>
 <tr>
-<td>publicLink</td>
-<td>If <code>true</code>, the File-picker will generate <a href="https://doc.owncloud.com/webui/next/classic_ui/files/public_link_shares.html">public links</a> for the shared files</td>
+<td>locationPicker</td>
+<td>Show the location picker instead of the regular File-picker</td>
 <td><code>bool</code></td>
 <td><code>false</code></td>
 <td>No</td>
 <td><code>1</code></td>
-</tr>
-<tr>
-<td>publicLinkDuration</td>
-<td>If <code>publicLink</code> is <code>true</code>, number of days links will be valid before expiry</td>
-<td><code>number</code></td>
-<td><code>7</code></td>
-<td>No</td>
-<td><code>30</code></td>
 </tr>
 <tr>
 <td>style</td>
@@ -363,6 +369,53 @@ long-term access to the files.</p>
 <td><code>true</code></td>
 <td>No</td>
 <td><code>0</code></td>
+</tr>
+</tbody>
+</table>
+<p>The following parameters are only relevant when using the regular File-picker, not <code>locationPicker</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Values</th>
+<th>Default</th>
+<th>Required</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>publicLink</td>
+<td>If <code>true</code>, the File-picker will generate <a href="https://doc.owncloud.com/webui/next/classic_ui/files/public_link_shares.html">public links</a> for the shared files</td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>No</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>publicLinkDuration</td>
+<td>If <code>publicLink</code> is <code>true</code>, number of days links will be valid before expiry</td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>No</td>
+<td><code>30</code></td>
+</tr>
+<tr>
+<td>publicLinkDescription</td>
+<td><a href="https://cs3org.github.io/cs3apis/#cs3.sharing.link.v1beta1.CreatePublicShareRequest">Description</a> for the public link</td>
+<td><code>string</code></td>
+<td></td>
+<td>No</td>
+<td><code>CodiMD</code></td>
+</tr>
+<tr>
+<td>mimeTypes</td>
+<td>A url-encoded, comma-separated list of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types">MIME types</a> to filter the contents of the user storage.</td>
+<td><code>string</code></td>
+<td></td>
+<td>No</td>
+<td><code>image%2Fjpeg%2Cimage%2Fsvg%2Bxml</code></td>
 </tr>
 </tbody>
 </table>

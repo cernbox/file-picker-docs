@@ -16,9 +16,17 @@ The CERNBox File-picker provides a way to integrate a cloud storage into other
 applications.
 
 It can be embedded in a web, and will show a file browser which allows the users
-to navigate their CERNBox storage. Once the user has made a selection, it will
-provide the parent with URLs or public links for the selected files (depending
-on the needs of the application using it).
+to navigate their CERNBox storage.
+
+The File-picker features two use cases:
+
+- **Select files** from the user storage and make them available to the parent
+  application via their URL a public link.
+- **Select a location** from the user storage and pass it to the parent
+  application for it to upload files into.
+
+Once the user has made a selection, it will send the parent application URLs or
+public links for the selected files.
 
 The File-picker handles authentication into CERNBox itself, and in the case of
 using file URLs, those include a token to grant access for the parent
