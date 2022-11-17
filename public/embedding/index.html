@@ -363,8 +363,16 @@ along with the selected path.</p>
 <td><code>light</code></td>
 </tr>
 <tr>
+<td>startPath</td>
+<td>Start path for the File-picker browser, always starting with <code>/</code> (overriden by <code>userHome</code>)</td>
+<td><code>string</code></td>
+<td><code>/</code></td>
+<td>No</td>
+<td><code>/aFolder/subFolder</code></td>
+</tr>
+<tr>
 <td>userHome</td>
-<td>Whether the File-picker should start the browser in the user home folder instead of the root of CERNBox</td>
+<td>Whether the File-picker should start the browser in the user home folder (takes precedence over <code>startPath</code>)</td>
 <td><code>bool</code></td>
 <td><code>true</code></td>
 <td>No</td>
@@ -411,7 +419,7 @@ along with the selected path.</p>
 </tr>
 <tr>
 <td>mimeTypes</td>
-<td>A url-encoded, comma-separated list of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types">MIME types</a> to filter the contents of the user storage.</td>
+<td>A url-encoded, comma-separated list of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types">MIME types</a> to filter the contents of the user storage</td>
 <td><code>string</code></td>
 <td></td>
 <td>No</td>

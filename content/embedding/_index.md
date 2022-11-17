@@ -76,12 +76,13 @@ along with the selected path.
 
 The File-picker accepts the following parameters through the query string:
 
-| Name           | Description                                                                                             | Values                    | Default | Required | Example                  |
-| -------------- | ------------------------------------------------------------------------------------------------------- | ------------------------- | ------- | -------- | ------------------------ |
-| origin         | URL of the iframe parent                                                                                | `string`                  |         | Yes      | `https://indico.cern.ch` |
-| locationPicker | Show the location picker instead of the regular File-picker                                             | `bool`                    | `false` | No       | `1`                      |
-| style          | Style to apply to the File-picker                                                                       | `light \| dark \| indico` | `light` | No       | `light`                  |
-| userHome       | Whether the File-picker should start the browser in the user home folder instead of the root of CERNBox | `bool`                    | `true`  | No       | `0`                      |
+| Name           | Description                                                                                                  | Values                    | Default | Required | Example                  |
+| -------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- | ------- | -------- | ------------------------ |
+| origin         | URL of the iframe parent                                                                                     | `string`                  |         | Yes      | `https://indico.cern.ch` |
+| locationPicker | Show the location picker instead of the regular File-picker                                                  | `bool`                    | `false` | No       | `1`                      |
+| style          | Style to apply to the File-picker                                                                            | `light \| dark \| indico` | `light` | No       | `light`                  |
+| startPath      | Start path for the File-picker browser, always starting with `/` (overriden by `userHome`)                   | `string`                  | `/`     | No       | `/aFolder/subFolder`     |
+| userHome       | Whether the File-picker should start the browser in the user home folder (takes precedence over `startPath`) | `bool`                    | `true`  | No       | `0`                      |
 
 The following parameters are only relevant when using the regular File-picker, not `locationPicker`.
 
