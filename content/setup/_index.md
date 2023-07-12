@@ -12,7 +12,7 @@ To set up your own File-picker instance, you need to do the following:
 - Edit the configuration files
 - Set up a web server
 
-This guide has been tested in CentOS 7 and Ubuntu 22.04, but it should work in
+This guide has been tested in CentOS 7, Ubuntu 22.04 and Linux Mint 21.1, but it should work in
 most distros, as it is a basic procedure.
 
 > ℹ️ Note: The `rsync` package should be installed in the system.
@@ -64,16 +64,12 @@ This file contains the server and authentication details:
 }
 ```
 
-First, replace the hostname in `server`, `redirect_uri` and `silent_redirect_uri`
-to the hostname of the machine where the File-picker will be available. So, if
-the name is `mycloud.net`, the fields should be:
+You want to configure the following fields:
 
-```
-"server": "https://mycloud.net"
-"redirect_uri": "https://mycloud.net/oidc-callback.html"
-"silent_redirect_uri": "https://mycloud.net/oidc-silent-callback.html"
-```
-
+- The hostname in `redirect_uri` and `silent_redirect_uri` should be the one where the file-picker
+will be served from.
+- `server` should be pointing to the owncloud instance.
+  
 Then, fill in the details for your OIDC provider in the `metadata_url`,
 `authority` and `client_id` fields. These should point to the OCIS IDP or your
 institution's SSO. You will have to register a `client_id` for the File-picker
@@ -86,7 +82,7 @@ fine-tune the size of the login web dimensions.
 ## allowed-origins.json
 
 This file contains a list of the origins that the file-picker will accept in the
-[`origin` query parameter](http://localhost:1313/docs/embedding/#query-parameters).
+[`origin` query parameter](docs/embedding/#query-parameters).
 You can use the `*` wildcard to whitelist entire domains. Imagine you host two
 applications in the `mycloud.net` domain which you want to allow use of the
 File-picker:
@@ -119,10 +115,13 @@ Then, add the following to the `http` section of the `/etc/nginx/nginx.conf`.
 > to the SSL certificate and key files.
 
 ```conf
+[...]
+
 server {
-  listen 80 default_server;
-  listen [::]:80 default_server;
-  server_name YOURHOSTNAME;
+  listen 8080 default_server;
+  listen [::]:8080 default_server;
+    # hostname we will be serving on, e.g. localhost
+    server_name YOURHOSTNAME;
   return 301 https://$server_name$request_uri;
 }
 
@@ -143,6 +142,7 @@ server {
   ssl_stapling on;
   ssl_stapling_verify on;
 
+	# location of the build of file-picker
   root   /var/www/fp/dist;
   index  index.html;
 
